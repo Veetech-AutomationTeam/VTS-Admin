@@ -174,8 +174,8 @@ public class Cabmodule extends Extentreport {
 				    driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
 				    Thread.sleep(5000);
 				    driver.findElement(By.id("lnkLogout")).click();
-				    //driver.close();
-					
+				    driver.close();
+					//suresh commit
 				    Assert.assertTrue(true);
 				   logger.log(LogStatus.PASS, "Resolver role is passed");	
 
