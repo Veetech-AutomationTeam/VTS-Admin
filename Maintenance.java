@@ -108,21 +108,23 @@ public class Maintenance {
 		driver.findElement(By.id("ContentPlaceHolderBody_dgvMaintenanceRequest_hylEdit_0")).click();
 		driver.switchTo().alert().accept();
 		driver.findElement(By.id("ContentPlaceHolderBody_txtAllocatedDate")).click();
-		driver.findElement(By.xpath("/html/body/div[1]/div[3]/table/tbody/tr[4]/td[3]")).click();
-		driver.findElement(By.xpath("/html/body/div[1]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")).click();
-		driver.findElement(By.xpath("/html/body/div[1]/div[1]/table/tbody/tr/td/fieldset/span[11]")).click();
+		driver.findElement(By.xpath("/html/body/div[1]/div[3]/table/tbody/tr[4]/td[5]")).click();
+		driver.findElement(By.xpath("/html/body/div[1]/div[2]/table/tbody/tr/td/fieldset[2]/span[6]")).click();
+		driver.findElement(By.xpath("/html/body/div[1]/div[1]/table/tbody/tr/td/fieldset/span[1]")).click();
+		
 		driver.findElement(By.id("ContentPlaceHolderBody_txtEstimateCompletion")).click();
 		driver.findElement(By.xpath("/html/body/div[2]/div[3]/table/tbody/tr[4]/td[6]")).click();
-		driver.findElement(By.xpath("/html/body/div[2]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")).click();
-		driver.findElement(By.xpath("/html/body/div[2]/div[1]/table/tbody/tr/td/fieldset/span[12]")).click();
+		driver.findElement(By.xpath("/html/body/div[2]/div[2]/table/tbody/tr/td/fieldset[2]/span[6]")).click();
+		driver.findElement(By.xpath("/html/body/div[2]/div[1]/table/tbody/tr/td/fieldset/span[4]")).click();
+		
 		driver.findElement(By.id("ContentPlaceHolderBody_txtActualCompletionDate")).click();
-		driver.findElement(By.xpath("/html/body/div[3]/div[3]/table/tbody/tr[4]/td[4]")).click();
-		driver.findElement(By.xpath("/html/body/div[3]/div[2]/table/tbody/tr/td/fieldset[2]/span[7]")).click();
-		driver.findElement(By.xpath("/html/body/div[3]/div[1]/table/tbody/tr/td/fieldset/span[3]")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/div[3]/table/tbody/tr[4]/td[6]")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/div[1]/table/tbody/tr/td/fieldset/span[12]")).click();
 		driver.findElement(By.name("ctl00$ContentPlaceHolderBody$txtCommants")).sendKeys("Test Data");
 		driver.findElement(By.id("ContentPlaceHolderBody_btnSubmit")).click();// Ticket Resolved in Maintenance module
+		Thread.sleep(5000);
 		driver.switchTo().alert().accept();
-		Thread.sleep(3000);
 		driver.findElement(By.ByClassName.className("dropdown-toggle")).click();
 		driver.findElement(By.id("lnkLogout")).click();
 	}
@@ -132,5 +134,3 @@ public class Maintenance {
 		driver.close();
 	}
 }
-
-
