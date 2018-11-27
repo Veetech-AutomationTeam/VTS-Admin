@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="VTS_Admin-Automation Testing">
+  <test thread-count="8" name="IT-Testing" preserve-order="true">
+    <classes>
+      <class name="VTS_Admin_IT_Testing.Staff_Module"/>
+      <class name="VTS_Admin_IT_Testing.Cab_Module"/>
+      <class name="VTS_Admin_IT_Testing.Purchase_Module"/>
+      <class name="VTS_Admin_IT_Testing.Transport_Module"/>
+      <class name="VTS_Admin_IT_Testing.Maintenance_Module"/>
+      <class name="VTS_Admin_IT_Testing.Travel_and_Accomadation_Module"/>
+      <class name="VTS_Admin_IT_Testing.Canteen_Food_Module"/>
+      <class name="VTS_Admin_IT_Testing.Feedback_Module"/>
+      <class name="VTS_Admin_IT_Testing.Ticket_Cancellation"/>
+    </classes>
+  </test> <!-- IT-Testing -->
+</suite> <!-- VTS_Admin-Automation Testing -->
+
+
+
+

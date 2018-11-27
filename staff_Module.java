@@ -1,4 +1,4 @@
-package VTS_Cab;
+package VTS_Admin_IT_Testing;
 
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -20,33 +20,35 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-public class StaffModule extends Extendreport_with_Screenshot{
-	public static WebDriver driver;
+public class Staff_Module extends Extent_Report{
+	WebDriver driver;
 	String username= "surv2e11855";
 	String password="Temp!123"; 
 	public String url="http://172.18.1.4/vts-admin/Login.aspx";
 	@BeforeClass
-	  public void Init2() throws Exception {
+	  public void Init() throws Exception {
 		System.setProperty("webdriver.gecko.driver", "D:\\suresh QA\\automationwork\\geckodriver\\geckodriver-v0.19.1-win64\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
 		driver.get(url);
 	}	
-		@Test(priority=1)
+		@Test(priority=0)
 			//login page
 			public void Staff_Request() throws Exception
 			{
 			logger = extent.startTest("pass Test");
+			Assert.assertTrue(true);
 			driver.get(url);
-			driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
 		    driver.findElement(By.id("txtUserName")).sendKeys(username);
 		    driver.findElement(By.id("txtPassword")).sendKeys(password);
 		    driver.findElement(By.id("btnLogin")).click();
@@ -64,6 +66,7 @@ public class StaffModule extends Extendreport_with_Screenshot{
 		   driver.findElement(By.xpath(" /html/body/div/div[1]/table/tbody/tr[5]/td[3]")).click();
 		   driver.findElement(By.id("ContentPlaceHolderBody_btnSubmit")).click();
 		   Thread.sleep(1000);
+		   
 		   driver.findElement(By.id("ContentPlaceHolderBody_btnAgree")).click();
 		    driver.switchTo().alert().accept();
 		    //logout
@@ -71,12 +74,12 @@ public class StaffModule extends Extendreport_with_Screenshot{
 		    driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
 		    Thread.sleep(5000);
 		    driver.findElement(By.id("lnkLogout")).click();
-		    Assert.assertTrue(true);
+		    
 		    logger.log(LogStatus.PASS, "Test Case Staff request is Passed");
 		  }
 		
 		//approver
-		@Test(priority=2)
+		@Test(priority=1)
 		public void staff_Approver_Ticket() throws Exception
 		{
 			logger = extent.startTest("pass Test");
@@ -103,15 +106,16 @@ public class StaffModule extends Extendreport_with_Screenshot{
 		    driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
 		    Thread.sleep(5000);
 		    driver.findElement(By.id("lnkLogout")).click();
+		   
 		    logger.log(LogStatus.PASS, "Test Case Staff Approval is Passed");
 		}
 		
-		@Test(priority=3)
+		@Test(priority=2)
 		//resolver role
 				public void staff_Resolve_Ticket() throws Exception
 				{
 					logger = extent.startTest("pass Test");
-					Assert.assertTrue(true);
+					 Assert.assertTrue(true);
 					driver.navigate().to(driver.getCurrentUrl());
 				    driver.findElement(By.id("txtUserName")).sendKeys("selV2E08792");
 				    driver.findElement(By.id("txtPassword")).sendKeys("Temp!123");
@@ -124,13 +128,13 @@ public class StaffModule extends Extendreport_with_Screenshot{
 				    Thread.sleep(2000);
 				    driver.findElement(By.id("aStaffQuarterRequestResolved")).click();
 				    //follow-up
-				    Thread.sleep(2000);	
+				    Thread.sleep(5000);	
 				    driver.findElement(By.id("ContentPlaceHolderBody_dgvSQResolvingTickets_hylFollowUp_0")).click();
 				    driver.findElement(By.id("ContentPlaceHolderBody_txtFollowUpComments")).sendKeys("tester suresh follow up");
 				    driver.findElement(By.id("ContentPlaceHolderBody_btnFollowUp")).click();
 				    driver.switchTo().alert().accept();
 				    //resolve tickets
-				    Thread.sleep(10000);
+				    Thread.sleep(5000);
 				    driver.findElement(By.id("ContentPlaceHolderBody_dgvSQResolvingTickets_hylApproval_0")).click();
 				    driver.findElement(By.id("ContentPlaceHolderBody_ddlHostelName")).click();
 				    new Select(driver.findElement(By.id("ContentPlaceHolderBody_ddlHostelName"))).selectByVisibleText("Raja Reddipatty");
@@ -141,36 +145,17 @@ public class StaffModule extends Extendreport_with_Screenshot{
 				    driver.findElement(By.id("ContentPlaceHolderBody_txtHostelWardenName")).sendKeys("tester");
 				    driver.findElement(By.id("ContentPlaceHolderBody_txtHostelWardenNumber")).sendKeys("4785963652");
 				    //date picker
+				    Thread.sleep(5000);
 				    driver.findElement(By.id("ContentPlaceHolderBody_txtHostelAllotedDate")).click();
 				    driver.findElement(By.xpath(" /html/body/div/div[1]/table/tbody/tr[5]/td[3]")).click();
 				    driver.findElement(By.id("ContentPlaceHolderBody_txtHostelFeeAmountDeduction")).sendKeys("1000");
 				    driver.findElement(By.id("ContentPlaceHolderBody_txtHostelResolverComments")).sendKeys("tester suresh");
 				    driver.findElement(By.id("ContentPlaceHolderBody_btnSubmit")).click();
 				    driver.switchTo().alert().accept();
-				    driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
-				    Thread.sleep(5000);
-				    driver.findElement(By.id("lnkLogout")).click();
-				    driver.quit();	   	
+				   driver.close();	   	
+				    
 				    logger.log(LogStatus.PASS, "Test Case staff resolvation is Passed");
 
 				}
-		@AfterMethod
-		 public void getResult(ITestResult result) throws Exception{
-	 if(result.getStatus() == ITestResult.FAILURE){
-	 logger.log(LogStatus.FAIL, "Test Case Failed is "+result.getName());
-	 logger.log(LogStatus.FAIL, "Test Case Failed is "+result.getThrowable());
-	 //To capture screenshot path and store the path of the screenshot in the string "screenshotPath"
-	                        //We do pass the path captured by this mehtod in to the extent reports using "logger.addScreenCapture" method. 
-	 
-	  String screenshotPath = Extendreport_with_Screenshot.getScreenhot(driver, result.getName());
-	 //To add it in the extent report 
-	 logger.log(LogStatus.FAIL, logger.addScreenCapture(screenshotPath));
-	 }else if(result.getStatus() == ITestResult.SKIP){
-	 logger.log(LogStatus.SKIP, "Test Case Skipped is "+result.getName());
-	 }
-	 // ending test
-	 //endTest(logger) : It ends the current test and prepares to create HTML report
-	 extent.endTest(logger);
-	 }	
 
-}	
+		 }

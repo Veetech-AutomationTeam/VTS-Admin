@@ -1,9 +1,10 @@
-package VTS_Cab;
-
+package VTS_Admin_IT_Testing;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -13,14 +14,20 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class purchase extends Extendreport_with_Screenshot{
-	public static WebDriver driver;
-	String username= "aruv2e11238";
+public class Purchase_Module extends Extent_Report{
+	WebDriver driver;
+	String username= "surv2e11855";
 	String password="Temp!123"; 
 	public String url="http://172.18.1.4/vts-admin/Login.aspx";
 	@BeforeClass
@@ -28,14 +35,15 @@ public class purchase extends Extendreport_with_Screenshot{
 		System.setProperty("webdriver.gecko.driver", "D:\\suresh QA\\automationwork\\geckodriver\\geckodriver-v0.19.1-win64\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
 		driver.get(url);
 	}	
-		@Test(priority=1)
+		@Test(priority=0)
 			//login page
 			public void purchase_Request() throws Exception
 			{
-			
+			logger = extent.startTest("pass Test");
+			Assert.assertTrue(true);
 		    driver.get(url);
 		    driver.findElement(By.id("txtUserName")).sendKeys(username);
 		    driver.findElement(By.id("txtPassword")).sendKeys(password);
@@ -49,20 +57,49 @@ public class purchase extends Extendreport_with_Screenshot{
 		    driver.findElement(By.id("ContentPlaceHolderBody_dgvPRItems_txtQuantity_0")).sendKeys("5");
 			driver.findElement(By.id("ContentPlaceHolderBody_btnSubmit")).click();
 			driver.switchTo().alert().accept();
-			Thread.sleep(2000);
-		    driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
+			Thread.sleep(5000);
+			driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
 		    Thread.sleep(5000);
 		    driver.findElement(By.id("lnkLogout")).click();
-		    logger = extent.startTest("pass Test");
-			Assert.assertTrue(true);
+			
 		    logger.log(LogStatus.PASS, "Test Case purchase request is Passed");
 			}
 			
+		//approver
+		@Test(priority = 1)
+		public void Approver1() throws Exception {
+			logger = extent.startTest("pass Test");
+			Assert.assertTrue(true);
+			driver.findElement(By.id("txtUserName")).sendKeys("chiv3e10836");
+			driver.findElement(By.id("txtPassword")).sendKeys("Temp!123");
+			driver.findElement(By.id("btnLogin")).click();
+			driver.findElement(By.id("ddlRole"));
+			Select dropdown2 = new Select(driver.findElement(By.id("ddlRole")));
+			dropdown2.selectByIndex(0);
+			driver.findElement(By.id("btnNext")).click();
+			// Approval1 login page
+			Thread.sleep(3000);
+			driver.findElement(By.linkText("Purchase Indent")).click();
+			Thread.sleep(3000);
+			driver.findElement(By.linkText("Ticket Approval")).click();
+			driver.findElement(By.id("ContentPlaceHolderBody_VTSAdminApprovalControl1_dgvApprovalDetails_dgvlnkApprove_0")).click();	
+			Alert alt150 = driver.switchTo().alert();//Approver 1
+			alt150.accept();
+			Thread.sleep(3000);
+			//driver.findElement(By.ByClassName.className("dropdown-toggle")).click();
+			 driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
+			 Thread.sleep(3000);
+			driver.findElement(By.id("lnkLogout")).click();
+			
+			 logger.log(LogStatus.PASS, "Test Case purchase intent Approval1 is Passed");
+		}
+
 	//approver
 			@Test(priority=2)
-			public void purchase_Approver_Ticket() throws Exception
+			public void purchase_Approver2_Ticket() throws Exception
 			{
 				logger = extent.startTest("pass Test");
+				 Assert.assertTrue(true);
 			    driver.findElement(By.id("txtUserName")).sendKeys("selV2E08792");
 			    driver.findElement(By.id("txtPassword")).sendKeys("Temp!123");
 			    driver.findElement(By.id("btnLogin")).click();
@@ -77,17 +114,18 @@ public class purchase extends Extendreport_with_Screenshot{
 				driver.findElement(By.id("ContentPlaceHolderBody_VTSAdminApprovalControl1_txtApproverComments")).sendKeys("Automation tester suresh");
 				driver.findElement(By.id("ContentPlaceHolderBody_VTSAdminApprovalControl1_btnApprove")).click();
 				driver.switchTo().alert().accept();
-				Thread.sleep(2000);
-			    driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[2]")).click();
+				Thread.sleep(5000);
+			    driver.findElement(By.xpath("/html/body/form/div[3]/div/nav[1]/ul/li[2]/a/i[1]")).click();
 			    Thread.sleep(5000);
 			    driver.findElement(By.id("lnkLogout")).click();
 			    Assert.assertTrue(true);
-			    logger.log(LogStatus.PASS, "Test Case purchase request is Passed");
+			    logger.log(LogStatus.PASS, "Test Case purchase Approval is Passed");
 			}
 		@Test(priority=3)
 		//resolver role
 			public void purchase_Resolve_Ticket() throws Exception
 			{	logger = extent.startTest("pass Test");
+				Assert.assertTrue(true);
 			    driver.findElement(By.id("txtUserName")).sendKeys("selV2E08792");
 			    driver.findElement(By.id("txtPassword")).sendKeys("Temp!123");
 			    driver.findElement(By.id("btnLogin")).click();
@@ -111,29 +149,9 @@ public class purchase extends Extendreport_with_Screenshot{
 			    driver.findElement(By.id("ContentPlaceHolderBody_txtResolverComments")).sendKeys("tester suresh");
 			    driver.findElement(By.id("ContentPlaceHolderBody_btnChangerole1")).click();
 			    driver.switchTo().alert().accept();
-			    driver.close();Assert.assertTrue(true);
-			    logger.log(LogStatus.PASS, "Test Case purchase request is Passed");
+			    driver.close();
+			    logger.log(LogStatus.PASS, "Test Case purchase Resolve is Passed");
 
 			}
-		@AfterMethod
-		 public void getResult(ITestResult result) throws Exception{
-	 if(result.getStatus() == ITestResult.FAILURE){
-	 logger.log(LogStatus.FAIL, "Test Case Failed is "+result.getName());
-	 logger.log(LogStatus.FAIL, "Test Case Failed is "+result.getThrowable());
-	 //To capture screenshot path and store the path of the screenshot in the string "screenshotPath"
-	                        //We do pass the path captured by this mehtod in to the extent reports using "logger.addScreenCapture" method. 
-	 
-	  String screenshotPath = Extendreport_with_Screenshot.getScreenhot(driver, result.getName());
-	 //To add it in the extent report 
-	 logger.log(LogStatus.FAIL, logger.addScreenCapture(screenshotPath));
-	 }else if(result.getStatus() == ITestResult.SKIP){
-	 logger.log(LogStatus.SKIP, "Test Case Skipped is "+result.getName());
-	 }
-	 // ending test
-	 //endTest(logger) : It ends the current test and prepares to create HTML report
-	 extent.endTest(logger);
-	 }	
-		
-		
-		
-}
+
+		 }
